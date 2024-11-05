@@ -1,0 +1,28 @@
+name: CI Pipeline
+
+# Ejecutar cuando se haga un push al repositorio
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Instalar Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      # Instalar dependencias
+      - name: Install dependencies
+        run: npm install
+
+      # Ejecutar pruebas
+      - name: Run tests
+        run: npm test
